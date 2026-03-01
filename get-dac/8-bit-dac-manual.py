@@ -13,9 +13,9 @@ def vtn(v):
 
     return int(v/dynrange*255)
 
-def n2d(v):
+def n2d(n):  # Изменено: параметр переименован с v на n для соответствия
     for i in range(8):
-        GPIO.output(q[i], (n>>i)&1)
+        GPIO.output(q[i], (n>>i)&1)  # Изменено: v заменено на n
 
 try:
     while True:
