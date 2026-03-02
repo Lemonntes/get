@@ -35,5 +35,15 @@ class R2R_ADC:
         vol = (number/255)*dynamic_range
         return(vol)
 
-    if __name__== "main"
+    if __name__ == "__main__":
+    try:
+        adc = R2R_ADC(3.290, compare_time=0.01, verbose=True)
+  
+        while True:
+            voltage = adc.get_sc_voltage()
+            print(f"Напряжение: {voltage:.3f} В")
+            time.sleep(0.5)
 
+        
+    finally:
+        adc.deinit()
