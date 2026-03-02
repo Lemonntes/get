@@ -1,6 +1,6 @@
 import time
 import adc_plot
-from r2r_adc import R2R_ADC
+
 
 try:
     adc = R2R_ADC(3.290, compare_time=0.0001, verbose=False)
