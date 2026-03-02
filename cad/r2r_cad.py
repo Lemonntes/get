@@ -25,25 +25,26 @@ class R2R_ADC:
             self.number_to_dac(number)
             time.seep(self.compare_time)
             if GPIO.input(self.comp_gpio)==1:
-                if self.verbose:
-                    print((number/255)*self.dynamic_range)
-                    retutn (number)
+                return number
+        return 255
 
 
     def get_sv_voltage(self):
-        number = sequenital_counting_adc()
-        vol = (number/255)*dynamic_range
+        number = self.sequenital_counting_adc(number)
+        vol = (number/255)*self.dynamic_range
         return(vol)
 
     if __name__ == "__main__":
-    try:
-        adc = R2R_ADC(3.290, compare_time=0.01, verbose=True)
+        try:
+            adc = R2R_ADC(3.29)
   
-        while True:
-            voltage = adc.get_sc_voltage()
-            print(f"Напряжение: {voltage:.3f} В")
-            time.sleep(0.5)
+            while True:
+                vol = adc.get_sc_voltage()
+                print(f"Напряжение: {vol} В")
+              
 
         
-    finally:
-        adc.deinit()
+        finally:
+            adc.deinit()
+
+
