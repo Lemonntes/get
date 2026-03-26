@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
-import pwm_dac as pd
 import signal_generator as sg
 import time
+
 amplitude = 3.2
 signal_frequency = 10
 sampling_frequency = 1000
@@ -35,7 +35,7 @@ class PWM_DAC:
         self.pwm.ChangeDutyCycle(duty_cycle)
 
 try:
-    dac = pd.PWM_DAC(12, 10000, 3.3, verbose = False)
+    dac = PWM_DAC(12, 10000, 3.3, verbose=False)
     start_time = time.time()
 
     while True:
@@ -49,5 +49,7 @@ try:
         
         sg.wait_for_sampling_period(sampling_frequency)
 
+except KeyboardInterrupt:
+    print("\nОстановка генерации сигнала...")
 finally:
     dac.deinit()
